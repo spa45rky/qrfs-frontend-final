@@ -1,0 +1,31 @@
+.login {
+    background: linear-gradient(180deg, rgba(250, 208, 196, 0) 0%, rgba(250, 208, 196, 0.1) 0.01%, #FFD1FF 100%);
+    width: 100vw;
+    height: 100vh;
+
+    .login-container {
+        width: 50%;
+        height: 40%;
+    }
+
+    .login-logo {
+        width: 334px;
+        height: 195px;
+    }
+
+    .login-form {
+        width: 40%;
+        height: 30%;
+        background-color: $qrfsGray;
+    }
+
+    .heading-text {
+        font-size: 24px;
+    }
+
+    .small-text {
+        font-size: 14px;
+        color: #675B5B;
+        text-decoration: none;
+    }
+}

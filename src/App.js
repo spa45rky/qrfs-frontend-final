@@ -3,6 +3,7 @@ import './Assets/Styles/index.scss'
 import { DashboardUI } from './Layouts/DashboardUI';
 import { Dashboard } from './Pages/Admin/Dashboard/Dashboard';
 import { Login } from './Pages/Shared/Login/Login';
+import { Signup } from './Pages/Shared/Signup/Signup';
 import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import WhiteLogo from './Assets/Images/Logos/qrfs-white-small.svg';
 import DefaultPfp from './Assets/Images/default-pfp.jpeg';
@@ -11,7 +12,7 @@ import { Container } from "react-bootstrap";
 function App() {
   return (
     <div className="App">
-      {true ?
+      {false ?
       <Container fluid className="dashboardContainer d-flex p-0 m-0">
             <div className="left-sidebar col-2">
                 <div className="top-logo">
@@ -48,6 +49,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route index path='/' element={<Login/>} />
+            <Route path="/register" element = {<Signup/>} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </BrowserRouter>

@@ -7,25 +7,14 @@ import PasswordIcon from '../../../Assets/Images/icons/password1.svg';
 import axios from 'axios';
 
 
-export const Login = ({ Header, Logo }) => {
+export const Login = ({ Logo }) => {
 
-    Header = Header || "DEFAULT"
     Logo = Logo || WhiteLogo
-
-
-    // useEffect(() => {
-    //     axios.get('http://localhost:3002/login').then((res) => {
-    //         console.log(res)
-    //     })
-    // }, [])
 
 
     return(
         <Container fluid className='login'>
-            <Row>
-                <h2 className='mt-5'>{Header}</h2>
-            </Row>
-            <Row className='d-flex flex-column justify-content-center align-items-center mt-5'>
+            <Row className='d-flex flex-column justify-content-center align-items-center'>
                 <div className='login-container'>
                     <img src={Logo} className="login-logo"/>
                     <div className='login-form'>
@@ -49,7 +38,7 @@ export const Login = ({ Header, Logo }) => {
                     </div>
                     <div className='lower-row'>
                         <div className='google-btn'></div>
-                        <p className='forget-password'>Don't have an account? <Link to="">Sign Up!</Link></p>
+                        <h6 className='forget-password m-3'>Don't have an account? <Link to="/register" className='form-hyperlink'>Sign Up!</Link></h6>
                     </div>
                 </div>
             </Row>

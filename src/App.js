@@ -1,6 +1,5 @@
 import './App.css';
 import './Assets/Styles/index.scss'
-import { DashboardUI } from './Layouts/DashboardUI';
 import { Dashboard } from './Pages/Admin/Dashboard/Dashboard';
 import { Login } from './Pages/Shared/Login/Login';
 import { Signup } from './Pages/Shared/Signup/Signup';
@@ -8,6 +7,20 @@ import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import WhiteLogo from './Assets/Images/Logos/qrfs-white-small.svg';
 import DefaultPfp from './Assets/Images/default-pfp.jpeg';
 import { Container } from "react-bootstrap";
+import axios from 'axios';
+
+
+axios.defaults.baseURL = "http://localhost:3002";
+axios.defaults.headers.post['Content-type'] = 'application/json';
+
+axios.interceptors.request.use(
+  (config) => {
+    config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+  }, (err) => {
+    return Promise.reject(err);
+  }
+)
+
 
 function App() {
   return (

@@ -3,14 +3,17 @@ import './Assets/Styles/index.scss'
 import { Dashboard } from './Pages/Admin/Dashboard/Dashboard';
 import { Login } from './Pages/Shared/Login/Login';
 import { Signup } from './Pages/Shared/Signup/Signup';
-import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
 import WhiteLogo from './Assets/Images/Logos/qrfs-white-small.svg';
 import DefaultPfp from './Assets/Images/default-pfp.jpeg';
 import { Container, Button } from "react-bootstrap";
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from './Services/Redux/reducers/authSlice';
+import { useNavigate } from 'react-router-dom';
+import { logout, reset } from './Services/Redux/reducers/authSlice';
 import { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // axios.defaults.baseURL = "http://localhost:3002";
 // axios.defaults.headers.post['Content-type'] = 'application/json';
@@ -39,6 +42,7 @@ function App() {
   const handleLogout = () => {
     dispatch(logout())
     dispatch(reset())
+    
   };
 
 
@@ -79,13 +83,13 @@ function App() {
             </div>
         </Container>
       : 
-        <BrowserRouter>
+      <BrowserRouter>
           <Routes>
             <Route index path='/' element={<Login/>} />
             <Route path="/register" element = {<Signup/>} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-        </BrowserRouter>
+      </BrowserRouter>
       }
     </div>
   );

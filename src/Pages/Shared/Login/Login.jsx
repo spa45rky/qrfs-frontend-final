@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import WhiteLogo from '../../../Assets/Images/Logos/qrfs-white-small.svg';
 import EmailIcon from '../../../Assets/Images/icons/email1.svg';
 import PasswordIcon from '../../../Assets/Images/icons/password1.svg';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { login, reset } from '../../../Services/Redux/reducers/authSlice';
+import { toast } from 'react-toastify';
 
 export const Login = ({ Logo }) => {
 
@@ -14,17 +16,33 @@ export const Login = ({ Logo }) => {
     const [email, setEmail] = useState()
     const [pass, setPass] = useState()
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     dispatchEvent(login({email, pass}))
-    //     .unwrap()
-    //     .then(() => {
-    //         console.log('Success!')
-    //     })
-    //     .catch((err) => {
-    //         console.log(err)
-    //     })
-    // }
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const { user, isLoading, isError, isSuccess, message } = useSelector(
+        (state) => state.auth
+    )
+
+    useEffect(() => {
+        if(isError) {
+            toast.error(message)
+        }
+        if(isSuccess || user) {
+            toast.success('Registered!')
+        }
+
+        dispatch(reset())
+    }, [user, isError, isSuccess, message, navigate, dispatch])
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const userData = {
+            email: email,
+            password: pass
+        }
+
+        dispatch(login(userData))
+    }
 
     return(
         <Container fluid className='login'>
@@ -37,14 +55,14 @@ export const Login = ({ Logo }) => {
                             <Link to="#" className='small-text mt-2'>Forgot password?</Link>
                         </div>
                         <div className='form-row'>
-                            <Form onSubmit={e => handleSubmit(e)}>
+                            <Form onSubmit={handleSubmit}>
                                 <InputGroup className='mb-3' controlId="email">
                                     <InputGroup.Text className='login-icon'><img src={EmailIcon}/></InputGroup.Text>
-                                    <Form.Control required type="email" placeholder="Enter your email" className='login-input' onChange={e => setEmail(e.target.value)}/>
+                                    <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} required type="email" placeholder="Enter your email" className='login-input' onChange={e => setEmail(e.target.value)}/>
                                 </InputGroup>
                                 <InputGroup className='' controlId="password">
                                     <InputGroup.Text className='login-icon'><img src={PasswordIcon}/></InputGroup.Text>
-                                    <Form.Control required type="password" placeholder="Enter your password" className='login-input' onChange={e => setPass(e.target.value)}/>
+                                    <Form.Control value={pass} onChange={(e) => setPass(e.target.value)} required type="password" placeholder="Enter your password" className='login-input' onChange={e => setPass(e.target.value)}/>
                                 </InputGroup>
                                 <Button type="submit" className="login-btn">Sign In</Button>
                             </Form>

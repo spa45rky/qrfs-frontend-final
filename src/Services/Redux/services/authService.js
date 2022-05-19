@@ -1,24 +1,27 @@
 import axios from 'axios';
 
 const register = async (userData) => {
-    const response = await axios.post('http://localhost:3002/register', userData)
+    try {
+        const response = await axios.post('http://localhost:3002/register', userData)
     
-    if (response.data) {
+        if (response.data) {
         localStorage.setItem('user', JSON.stringify(response.data))
-    }
+        }
 
-    return response.data
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
 }
 
-const login = async (data) => {
-    console.log(data)
+const login = async (userData) => {
     try {
-        res = await axios.post("http://localhost:3002/login", data)
-        if (!res?.data.success) throw res.data?.message;
+        const response = await axios.post("http://localhost:3002/login", userData)
+        if (response?.data) {
+            localStorage.setItem("user", response.data)
+        }
 
-        const { token, user } = res?.data.data
-        localStorage.setItem("user", user)
-        localStorage.setItem("token", token)
+        return response.data
     } catch (err) {
         console.log(err)
     }

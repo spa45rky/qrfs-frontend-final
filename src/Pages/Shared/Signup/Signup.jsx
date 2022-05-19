@@ -56,7 +56,7 @@ export const Signup = ({ Logo }) => {
         const userData = {
             ...e
         }
-
+        toast.success("HURRAH!")
         dispatch(register(userData))
     }
 

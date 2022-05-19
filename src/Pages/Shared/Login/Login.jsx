@@ -6,7 +6,6 @@ import EmailIcon from '../../../Assets/Images/icons/email1.svg';
 import PasswordIcon from '../../../Assets/Images/icons/password1.svg';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../../Services/Redux/actions/auth';
 
 export const Login = ({ Logo }) => {
 
@@ -15,17 +14,17 @@ export const Login = ({ Logo }) => {
     const [email, setEmail] = useState()
     const [pass, setPass] = useState()
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        dispatchEvent(login({email, pass}))
-        .unwrap()
-        .then(() => {
-            console.log('Success!')
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     dispatchEvent(login({email, pass}))
+    //     .unwrap()
+    //     .then(() => {
+    //         console.log('Success!')
+    //     })
+    //     .catch((err) => {
+    //         console.log(err)
+    //     })
+    // }
 
     return(
         <Container fluid className='login'>

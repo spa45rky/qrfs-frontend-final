@@ -6,26 +6,45 @@ import { Signup } from './Pages/Shared/Signup/Signup';
 import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import WhiteLogo from './Assets/Images/Logos/qrfs-white-small.svg';
 import DefaultPfp from './Assets/Images/default-pfp.jpeg';
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from './Services/Redux/reducers/authSlice';
+import { useEffect } from 'react';
 
+// axios.defaults.baseURL = "http://localhost:3002";
+// axios.defaults.headers.post['Content-type'] = 'application/json';
 
-axios.defaults.baseURL = "http://localhost:3002";
-axios.defaults.headers.post['Content-type'] = 'application/json';
-
-axios.interceptors.request.use(
-  (config) => {
-    config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`
-  }, (err) => {
-    return Promise.reject(err);
-  }
-)
+// axios.interceptors.request.use(
+//   (config) => {
+//     config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+//   }, (err) => {
+//     return Promise.reject(err);
+//   }
+// )
 
 
 function App() {
+
+  const { user } = useSelector(
+    (state) => state.auth
+  );
+
+
+
+  const dispatch = useDispatch();
+
+  console.log(user)
+
+  const handleLogout = () => {
+    dispatch(logout())
+    dispatch(reset())
+  };
+
+
   return (
     <div className="App">
-      {false ?
+      {user ?
       <Container fluid className="dashboardContainer d-flex p-0 m-0">
             <div className="left-sidebar col-2">
                 <div className="top-logo">
@@ -42,6 +61,7 @@ function App() {
                     <div className="user-info">
                         <h6 className="m-0">Raafaye Faheem</h6>
                         <p className="role-font">Super Admin</p>
+                        <Button className="btn btn-primary" onClick={handleLogout}>logout</Button>
                     </div>
                 </div>
             </div>

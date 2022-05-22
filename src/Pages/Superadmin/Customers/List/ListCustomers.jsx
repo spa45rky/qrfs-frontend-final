@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Table, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { toast } from 'react-toastify';
 
 export const ListCustomers = () => {
     const [list, setList] = useState([])
@@ -18,6 +19,14 @@ export const ListCustomers = () => {
             setList(response.data);
             setLoading(false)
         }
+    }
+
+    const handleDelete = async (id) => {
+        const response = await axios.delete(`http://localhost:3002/superadmin/customers/delete/${id}`);
+        if (response.data) {
+            toast.success(response.data)
+        }
+        getCustomers();
     }
 
     console.log({list})
@@ -50,8 +59,11 @@ export const ListCustomers = () => {
                                 <td>{customer.title}</td>
                                 <td>N/A</td>
                                 <td>{customer.email}</td>
-                                <td>ACTIVE</td>
-                                <td>N/A</td>
+                                <td className=""><span className="active-role">ACTIVE</span></td>
+                                <td>
+                                    <Button className="btn-warning action-btn m-1">Edit</Button>
+                                    <Button className="btn-danger action-btn m-1" onClick={(e) => handleDelete(customer._id)}>Delete</Button>
+                                </td>
                             </tr>
                             )}
                         </tbody>

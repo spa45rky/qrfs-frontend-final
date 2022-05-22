@@ -39,3 +39,32 @@
         }
     }
 }
+
+.list-employees {
+
+    // Classes for role colors
+    .admin-role {
+        background-color: $qrfsPurple!important;
+        color: white!important;
+        display: inline-block;
+        width: 170px;
+        border-radius: 10px;
+        padding: 5px 20px;
+    }
+    .sp-role {
+        background-color: #5EB0CF!important;
+        color: white!important;
+        display: inline-block;
+        width: 170px;
+        border-radius: 10px;
+        padding: 5px 20px;
+    }
+    .complainee-role {
+        background-color: #83BA8E!important;
+        color: white!important;
+        display: inline-block;
+        width: 170px;
+        border-radius: 10px;
+        padding: 5px 20px;
+    }
+}

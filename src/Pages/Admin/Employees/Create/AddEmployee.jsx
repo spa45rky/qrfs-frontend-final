@@ -15,6 +15,8 @@ export const AddEmployee = () => {
 
     const navigate = useNavigate();
 
+    console.log(user.user.company_id)
+
     const employeeSchema = Yup.object().shape({
         firstName: Yup.string()
         .min(2, 'First Name is too short!')
@@ -36,7 +38,8 @@ export const AddEmployee = () => {
 
         const response = await axios.post(`http://localhost:3002/admin/users/add/${user.user.company_id}`, employeeData)
         if (response.data) {
-            console.log(response.data)
+            toast.success(response.data)
+            navigate(-1)
         }
     }
 
@@ -44,7 +47,7 @@ export const AddEmployee = () => {
         firstName: '',
         lastName: '',
         email: '',
-        role: ''
+        role: 'COMPLAINEE'
     }
 
 

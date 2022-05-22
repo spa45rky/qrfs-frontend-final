@@ -25,7 +25,7 @@ export const ListEmployees = () => {
     }
 
     return(
-        <Container fluid className="p-0 m-0">
+        <Container fluid className="p-0 m-0 list-employees">
             <div className='top-header mt-5'>
                 <h1 className='name-heading'>Employees</h1>
             </div>
@@ -45,7 +45,9 @@ export const ListEmployees = () => {
                         <tbody>
                             {list.map((employee) => 
                             <tr>
-                                <td>{employee.role}</td>
+                                <td><span className={employee.role === "ADMIN" 
+                                ? "admin-role" : employee.role === "COMPLAINEE" 
+                                ? "complainee-role" : "sp-role"}>{employee.role}</span></td>
                                 <td>{employee.name}</td>
                                 <td>{employee.email}</td>
                                 <td>{employee.sign_type}</td>

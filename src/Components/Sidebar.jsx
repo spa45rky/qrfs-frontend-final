@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import superadminSidebar from "./superadminSidebar";
 import complaineeSidebar from "./complaineeSidebar";
+import adminSidebar from "./adminSidebar";
 
 
 const Sidebar = (props) => {
@@ -12,6 +13,7 @@ const Sidebar = (props) => {
 
     const superadmin = superadminSidebar;
     const complainee = complaineeSidebar;
+    const admin = adminSidebar;
 
     let content = []
 
@@ -21,6 +23,9 @@ const Sidebar = (props) => {
             break;
         case "COMPLAINEE":
             content = complainee
+            break;
+        case "ADMIN":
+            content = admin
             break;
     }
     return(

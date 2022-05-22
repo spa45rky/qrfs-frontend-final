@@ -1,56 +1,54 @@
-import React, { useEffect, useState } from "react";
-import { Container, Table, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Container, Button, Table } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-export const ListCustomers = () => {
+export const ListEmployees = () => {
     const [list, setList] = useState([])
     const [loading, setLoading] = useState(false)
 
-    useEffect(() => {
-        getCustomers()
-    }, [])
 
-    const getCustomers = async () => {
-        setLoading(true)
-        const response = await axios.get('http://localhost:3002/superadmin/customers')
+    const { user } = useSelector(
+        (state) => state.auth
+    );
+
+    useEffect(() => {
+        getEmployees();
+    })
+
+    const getEmployees = async () => {
+        const response = await axios.get(`http://localhost:3002/admin/users/all/${user.user.company_id}`)
         if (response.data) {
-            setList(response.data);
-            setLoading(false)
+            setList(response.data)
         }
     }
-
-    console.log({list})
-
-    if (loading) return <div></div>
 
     return(
         <Container fluid className="p-0 m-0">
             <div className='top-header mt-5'>
-                <h1 className='name-heading'>Customers</h1>
+                <h1 className='name-heading'>Employees</h1>
             </div>
             <div className="customers-view">
                 <div className="filter-row d-flex align-items-start">
-                    <Link to="/customers/add"><Button className="btn-add">Add New</Button></Link>
+                    <Link to="/employees/add"><Button className="btn-add">Add New</Button></Link>
                 </div>
                 <div className="table-row">
                     <Table striped bordered hover className="qrfs-table">
                         <thead>
-                            <th>Logo</th>
-                            <th>Company Name</th>
-                            <th>Subscription Plan</th>
+                            <th>Role</th>
+                            <th>Name</th>
                             <th>Email</th>
-                            <th>Status</th>
+                            <th>Sign Up Type</th>
                             <th>Operations</th>
                         </thead>
                         <tbody>
-                            {list.map((customer) => 
+                            {list.map((employee) => 
                             <tr>
-                                <td>N/A</td>
-                                <td>{customer.title}</td>
-                                <td>N/A</td>
-                                <td>{customer.email}</td>
-                                <td>ACTIVE</td>
+                                <td>{employee.role}</td>
+                                <td>{employee.name}</td>
+                                <td>{employee.email}</td>
+                                <td>{employee.sign_type}</td>
                                 <td>N/A</td>
                             </tr>
                             )}

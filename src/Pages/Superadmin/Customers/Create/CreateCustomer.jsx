@@ -6,6 +6,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 
@@ -20,7 +21,11 @@ export const CreateCustomer = () => {
 
         const response = await axios.post("http://localhost:3002/superadmin/customers/add", customerData)
         if (response.data) {
-            console.log(response.data)
+            if (response.data === "CUSTOMER AND ADMIN ARE SUCCESSFULLY CREATED!") {
+                toast.success(response.data)
+            } else {
+                toast.error('Error Occurred!')
+            }
         }
     }
 

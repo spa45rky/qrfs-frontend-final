@@ -6,7 +6,7 @@ import Complaints from '../../../Assets/Images/icons/complaints-filed.svg';
 import { useSelector } from 'react-redux';
 
 
-export const Dashboard = () => {
+export const AdminDashboard = () => {
     const { user } = useSelector((state) => state.auth)
 
     const userObject = user.user
@@ -21,17 +21,17 @@ export const Dashboard = () => {
             <div className='card-row d-flex justify-content-between'>
                 <InfoCard 
                 Heading="Employees"
-                Number="2300"
+                Number="2"
                 Icon={MultipleUsers}
                 />
                 <InfoCard
                 Heading="Complaints Filed"
-                Number="67"
+                Number="12"
                 Icon={Complaints}
                 />
                 <InfoCard
                 Heading="Feedback Given"
-                Number="20"
+                Number="4"
                 />
             </div>
         </Container>

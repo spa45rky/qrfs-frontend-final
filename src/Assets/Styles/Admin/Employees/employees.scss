@@ -1,0 +1,41 @@
+.add-employee {
+    .form-row {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+
+        .btn-row {
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+        }
+
+        .form-text {
+            display: flex;
+            font-size: 22px;
+            color: black;
+            margin-left: 10px;
+        }
+
+        .form-input {
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+        .form-dropdown {
+            display: flex;
+            button {
+                width: 90%;
+                background-color: $qrfsPurple;
+                border: none;
+                color: white;
+            }
+        }
+
+        .submit-btn {
+            min-width: 200px;
+            height: 38px;
+        }
+    }
+}

@@ -9,7 +9,25 @@ export const CreateComplaint = () => {
 
     const navigate = useNavigate();
 
-    const complaintSchema = Yup.object
+    const complaintSchema = Yup.object().shape({
+        title: Yup.string()
+        .required('Required!'),
+        category: Yup.string()
+        .required('Required!'),
+        description: Yup.string()
+        .min(10, 'Please provide some more description about the complaint!')
+        .required('Required!'),
+    })
+
+    const initialValues = {
+        title: '',
+        category: '',
+        description: '',
+    }
+
+    const handleSubmit = (e) => {
+
+    }
 
     return(
         <Container className="p-0 m-0">
@@ -24,7 +42,35 @@ export const CreateComplaint = () => {
                     <p>Complaint Details</p>
                 </div>
                 <div className="complaint-form-container">
-
+                    <Formik
+                    initialValues={initialValues}
+                    validationSchema={complaintSchema}
+                    onSubmit={handleSubmit}
+                    >
+                        {({
+                            handleSubmit,
+                            handleChange,
+                            values,
+                            errors,
+                            touched,
+                            isValid
+                            }) => (
+                                <Form noValidate onSubmit={handleSubmit}>
+                                    <Form.Group>
+                                        <Form.Label className="form-text">Title</Form.Label>
+                                        <Form.Control
+                                        required 
+                                        className='complaint-input' 
+                                        type="text"
+                                        name="title"
+                                        value={values.title}
+                                        onChange={handleChange}
+                                        isValid={touched.title && !errors.title}
+                                        />
+                                    </Form.Group>
+                                </Form>
+                            )}
+                    </Formik>
                 </div>
             </div>
         </Container>

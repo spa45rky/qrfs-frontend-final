@@ -2,9 +2,12 @@ import './App.css';
 import './Assets/Styles/index.scss'
 import { SuperAdminDashboard } from './Pages/Superadmin/Dashboard/SuperAdminDashboard';
 import { ComplaineeDashboard } from './Pages/Complainee/Dashboard/ComplaineeDashboard';
+import { AdminDashboard } from './Pages/Admin/Dashboard/AdminDashboard';
 import { ListCustomers } from './Pages/Superadmin/Customers/List/ListCustomers';
 import { ListComplaints } from './Pages/Complainee/Complaints/List/ListComplaints';
+import { ListEmployees } from './Pages/Admin/Employees/List/ListEmployees';
 import { CreateComplaint } from './Pages/Complainee/Complaints/Create/CreateComplaint';
+import { AddEmployee } from './Pages/Admin/Employees/Create/AddEmployee';
 import { Login } from './Pages/Shared/Login/Login';
 import { Signup } from './Pages/Shared/Signup/Signup';
 import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
@@ -26,9 +29,12 @@ import io from 'socket.io-client';
 // axios.defaults.baseURL = "http://localhost:3002";
 // axios.defaults.headers.post['Content-type'] = 'application/json';
 
+
+
 // axios.interceptors.request.use(
 //   (config) => {
-//     config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+//     config.headers['Authorization'] = `Bearer ${bearerToken.token}`
+//     return config;
 //   }, (err) => {
 //     return Promise.reject(err);
 //   }
@@ -117,7 +123,46 @@ function App() {
         </Container>
         </BrowserRouter>
         :
+        access === "ADMIN" ?
+
         <BrowserRouter>
+        <Container fluid className="dashboardContainer d-flex p-0 m-0">
+              <div className="left-sidebar col-2">
+                  <div className="top-logo">
+                      <img src={WhiteLogo} className='dashboard-logo mt-4' />
+                  </div>
+                  <div className="middle-sidebar">
+                    <Sidebar role={access}/>
+                  </div>
+                  <hr className="hr"/>
+                  <div className="bottom-user d-flex"> 
+                      <div className="pfp-circle">
+                          <img src={DefaultPfp} className="pfp-img" />
+                      </div>
+                      <div className="user-info">
+                          <h6 className="m-0">{user.user.name}</h6>
+                          <p className="role-font">{user.user.role}</p>
+                          <Button className="btn btn-primary" onClick={handleLogout}>logout</Button>
+                      </div>
+                  </div>
+              </div>
+              <div className="right-content col-10">
+                  <div className="right-menu">
+                    {
+                        <Routes>
+                            <Route path="/dashboard" element={<AdminDashboard/>} />
+                            <Route path="/employees" element={<ListEmployees/>} />
+                            <Route path="/employees/add" element={<AddEmployee/>} />
+                            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                        </Routes>
+                      
+                    }
+                  </div>
+              </div>
+          </Container>
+        </BrowserRouter>
+      :
+      <BrowserRouter>
       <Container fluid className="dashboardContainer d-flex p-0 m-0">
             <div className="left-sidebar col-2">
                 <div className="top-logo">

@@ -6,6 +6,7 @@ import { AdminDashboard } from './Pages/Admin/Dashboard/AdminDashboard';
 import { ListCustomers } from './Pages/Superadmin/Customers/List/ListCustomers';
 import { ListComplaints } from './Pages/Complainee/Complaints/List/ListComplaints';
 import { ListEmployees } from './Pages/Admin/Employees/List/ListEmployees';
+import { ListDepartments } from './Pages/Admin/Departments/List/ListDepartments';
 import { CreateComplaint } from './Pages/Complainee/Complaints/Create/CreateComplaint';
 import { AddEmployee } from './Pages/Admin/Employees/Create/AddEmployee';
 import { Login } from './Pages/Shared/Login/Login';
@@ -154,6 +155,7 @@ function App() {
                             <Route path="/dashboard" element={<AdminDashboard/>} />
                             <Route path="/employees" element={<ListEmployees/>} />
                             <Route path="/employees/add" element={<AddEmployee/>} />
+                            <Route path="/departments" element={<ListDepartments/>} />
                             <Route path="*" element={<Navigate to="/dashboard" replace />} />
                         </Routes>
                       

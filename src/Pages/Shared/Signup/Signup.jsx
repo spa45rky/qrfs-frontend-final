@@ -56,7 +56,7 @@ export const Signup = ({ Logo }) => {
         const userData = {
             ...e
         }
-        toast.success("HURRAH!")
+        toast.success("Successfully Registered!")
         dispatch(register(userData))
     }
 
@@ -68,8 +68,8 @@ export const Signup = ({ Logo }) => {
         <Container fluid className='login'>
             <Row className='d-flex flex-column justify-content-center align-items-center'>
                 <div className='login-container'>
-                    <img src={Logo} className="login-logo"/>
-                    <div className='login-form'>
+                    <img src={Logo} className="register-logo"/>
+                    <div className='login-form register-form'>
                         <div className='top-row d-flex justify-content-between mb-3'>
                             <span className='heading-text mb-1'>Create an account</span>
                         </div>

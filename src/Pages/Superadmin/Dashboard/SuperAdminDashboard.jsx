@@ -6,7 +6,7 @@ import Complaints from '../../../Assets/Images/icons/complaints-filed.svg';
 import { useSelector } from 'react-redux';
 
 
-export const Dashboard = () => {
+export const SuperAdminDashboard = () => {
     const { user } = useSelector((state) => state.auth)
 
     const userObject = user.user
@@ -18,21 +18,23 @@ export const Dashboard = () => {
             <div className='top-header mt-5'>
                 <h1 className='name-heading'>{userName}'s Dashboard</h1>
             </div>
-            <div className='card-row d-flex justify-content-between'>
-                <InfoCard 
-                Heading="Employees"
-                Number="2300"
-                Icon={MultipleUsers}
-                />
-                <InfoCard
-                Heading="Complaints Filed"
-                Number="67"
-                Icon={Complaints}
-                />
-                <InfoCard
-                Heading="Feedback Given"
-                Number="20"
-                />
+            <div className='d-flex dash-row'>
+                <div className='card-row d-flex justify-content-between'>
+                    <InfoCard 
+                    Heading="Customers"
+                    Number="2300"
+                    />
+                    <InfoCard
+                    Heading="Registered Users"
+                    Number="67"
+                    Icon={MultipleUsers}
+                    />
+                    <InfoCard
+                    Heading="Complaints Filed"
+                    Number="20"
+                    Icon={Complaints}
+                    />
+                </div>
             </div>
         </Container>
     )

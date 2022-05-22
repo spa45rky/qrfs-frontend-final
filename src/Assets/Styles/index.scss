@@ -7,8 +7,20 @@
 @import './Shared/login';
 @import './Shared/register';
 @import './Layout/dashboardUI';
-@import './Shared//infocard';
+@import './Shared/infocard';
+@import './Shared/sidebar';
+@import './Shared/buttons';
+@import './Shared/table';
+@import './Shared/back-row';
 
 // ADMIN COMPONENTS
 
 @import './Admin/Dashboard/dashboard';
+
+// SUPERADMIN COMPONENTS
+
+@import './Superadmin/Customers/customers';
+
+// COMPLAINEE COMPONENTS
+
+@import './Complainee/Complaints/complaints';

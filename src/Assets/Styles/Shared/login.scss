@@ -8,9 +8,19 @@
         height: 40%;
     }
 
+    .register-container {
+        width: 31.688rem;
+        height: 38%;
+    }
+
     .login-logo {
         width: 334px;
         height: 195px;
+    }
+
+    .register-logo {
+        width: 300px;
+        height: 80px;
     }
 
     .login-form {
@@ -19,6 +29,10 @@
         background-color: $qrfsGray;
         padding: 32px 54px 42px 54px;
         border-radius: 10px!important;
+    }
+
+    .register-form {
+        padding: 22px 40px 36px 40px!important;
     }
 
     .login-icon {

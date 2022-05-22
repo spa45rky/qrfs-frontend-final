@@ -1,0 +1,18 @@
+.back-row {
+    display: flex;
+    margin-left: 15px;
+    margin-top: 15px;
+
+    span {
+
+        font-size: 15px;
+        background-color: $qrfsPurple;
+        border-radius: 8px;
+        padding: 3px;
+        cursor: pointer;
+
+        img {
+            height: 70%;
+        }
+    }
+}

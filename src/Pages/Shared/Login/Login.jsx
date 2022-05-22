@@ -28,7 +28,7 @@ export const Login = ({ Logo }) => {
             toast.error(message)
         }
         if(isSuccess || user) {
-            toast.success('Registered!')
+            toast.success('Logged In!')
         }
 
         dispatch(reset())
@@ -41,6 +41,8 @@ export const Login = ({ Logo }) => {
             password: pass
         }
 
+
+        toast.success('Logged in!')
         dispatch(login(userData))
     }
 
@@ -58,11 +60,11 @@ export const Login = ({ Logo }) => {
                             <Form onSubmit={handleSubmit}>
                                 <InputGroup className='mb-3' controlId="email">
                                     <InputGroup.Text className='login-icon'><img src={EmailIcon}/></InputGroup.Text>
-                                    <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} required type="email" placeholder="Enter your email" className='login-input' onChange={e => setEmail(e.target.value)}/>
+                                    <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} required type="email" placeholder="Enter your email" className='login-input'/>
                                 </InputGroup>
                                 <InputGroup className='' controlId="password">
                                     <InputGroup.Text className='login-icon'><img src={PasswordIcon}/></InputGroup.Text>
-                                    <Form.Control value={pass} onChange={(e) => setPass(e.target.value)} required type="password" placeholder="Enter your password" className='login-input' onChange={e => setPass(e.target.value)}/>
+                                    <Form.Control value={pass} onChange={(e) => setPass(e.target.value)} required type="password" placeholder="Enter your password" className='login-input'/>
                                 </InputGroup>
                                 <Button type="submit" className="login-btn">Sign In</Button>
                             </Form>

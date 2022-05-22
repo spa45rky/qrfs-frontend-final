@@ -17,6 +17,11 @@
         
         .top-logo {
             height: 15%;
+
+            .dashboard-logo {
+                height: 55%;
+                max-height: 80px;
+            }
         }
 
         .middle-sidebar {
@@ -29,7 +34,7 @@
                 width: 40%;
 
                 .pfp-img {
-                    height: 64px;
+                    height: 48px;
                     border-radius: 50%;
                 }
             }
@@ -40,7 +45,7 @@
                 align-items: flex-start;
                 justify-content: center;
                 .role-font {
-                    font-size: 15px;
+                    font-size: 13px;
                     color: #FFBE72;
                     font-weight: 600;
                     margin: 0!important;
@@ -56,8 +61,8 @@
         .right-menu {
             margin: 10px;
             background-color: white;
-            min-width: 1580px;
-            min-height: 910px;
+            width: 100%;
+            min-height: 97%;
             border-radius: 20px;
         }
     }

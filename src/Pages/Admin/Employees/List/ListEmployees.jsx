@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Container, Button, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { HashLoader } from 'react-spinners';
+import { css } from "@emotion/react";
 
 export const ListEmployees = () => {
     const [list, setList] = useState([])
@@ -15,11 +17,13 @@ export const ListEmployees = () => {
 
     useEffect(() => {
         getEmployees();
-    })
+    }, [])
 
     const getEmployees = async () => {
+        setLoading(true)
         const response = await axios.get(`http://localhost:3002/admin/users/all/${user.user.company_id}`)
         if (response.data) {
+            setLoading(false)
             setList(response.data)
         }
     }
@@ -27,6 +31,20 @@ export const ListEmployees = () => {
     const handleDelete = async () => {
 
     }
+
+    const override = css`
+    display: block;
+    margin: 0 auto;
+    `;
+
+
+
+    if (loading) return (
+        <div className='d-flex justify-content-center align-items-center loader-container'>
+            <HashLoader color="9A98F0" css={override} size={100}/>
+        </div>
+        
+    )
 
     return(
         <Container fluid className="p-0 m-0 list-employees">

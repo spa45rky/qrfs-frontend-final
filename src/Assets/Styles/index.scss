@@ -8,16 +8,21 @@
 @import './Shared/register';
 @import './Layout/dashboardUI';
 @import './Shared/infocard';
+@import './Shared/small-card';
+@import './Shared/large-card';
 @import './Shared/sidebar';
 @import './Shared/buttons';
 @import './Shared/table';
 @import './Shared/back-row';
 @import './Shared/loader';
+@import './Shared/text-colors';
+@import './Shared/leaderboard';
 
 // ADMIN COMPONENTS
 
 @import './Admin/Dashboard/dashboard';
 @import './Admin/Employees/employees';
+@import './Admin/Departments/departments';
 
 // SUPERADMIN COMPONENTS
 

@@ -1,0 +1,20 @@
+.small-card-container {
+    width: 200px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $qrfsPurple;
+    border-radius: 15px;
+    margin: 10px;
+
+    .small-card-img {
+        height: 90px;
+    }
+    .small-card-text {
+        font-size: 17px;
+        font-weight: 300;
+        color: white;
+    }
+}

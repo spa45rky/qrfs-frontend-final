@@ -11,6 +11,7 @@ import { ListDepartments } from './Pages/Admin/Departments/List/ListDepartments'
 import { CreateComplaint } from './Pages/Complainee/Complaints/Create/CreateComplaint';
 import { AddEmployee } from './Pages/Admin/Employees/Create/AddEmployee';
 import { ViewCustomer } from './Pages/Superadmin/Customers/View/ViewCustomer';
+import { ViewDepartment } from './Pages/Admin/Departments/View/ViewDepartment';
 import { Login } from './Pages/Shared/Login/Login';
 import { Signup } from './Pages/Shared/Signup/Signup';
 import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
@@ -28,6 +29,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CreateCustomer } from './Pages/Superadmin/Customers/Create/CreateCustomer';
 import io from 'socket.io-client';
+import { Categories } from './Pages/Admin/Categories/Categories';
+
 
 // axios.defaults.baseURL = "http://localhost:3002";
 // axios.defaults.headers.post['Content-type'] = 'application/json';
@@ -158,6 +161,7 @@ function App() {
                             <Route path="/employees" element={<ListEmployees/>} />
                             <Route path="/employees/add" element={<AddEmployee/>} />
                             <Route path="/departments" element={<ListDepartments/>} />
+                            <Route path="/departments/:id" element={<ViewDepartment/>} />
                             <Route path="*" element={<Navigate to="/dashboard" replace />} />
                         </Routes>
                       
@@ -196,6 +200,7 @@ function App() {
                           <Route path="/customers" element={<ListCustomers/>} />
                           <Route path="/customers/add" element={<CreateCustomer/>} />
                           <Route path="/customers/:id" element={<ViewCustomer/>} />
+                          <Route path="/categories" element={<Categories/>} />
                           <Route path="*" element={<Navigate to="/dashboard" replace />} />
                       </Routes>
                     

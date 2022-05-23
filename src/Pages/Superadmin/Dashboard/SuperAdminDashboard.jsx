@@ -26,7 +26,7 @@ export const SuperAdminDashboard = () => {
                     />
                     <InfoCard
                     Heading="Registered Users"
-                    Number="67"
+                    Number="69"
                     Icon={MultipleUsers}
                     />
                     <InfoCard

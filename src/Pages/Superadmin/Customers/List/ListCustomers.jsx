@@ -3,6 +3,8 @@ import { Container, Table, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from 'react-toastify';
+import { HashLoader } from 'react-spinners';
+import { css } from "@emotion/react";
 
 export const ListCustomers = () => {
     const [list, setList] = useState([])
@@ -29,9 +31,17 @@ export const ListCustomers = () => {
         getCustomers();
     }
 
-    console.log({list})
+    const override = css`
+    display: block;
+    margin: 0 auto;
+    `;
 
-    if (loading) return <div></div>
+    if (loading) return (
+        <div className='d-flex justify-content-center align-items-center loader-container'>
+            <HashLoader color="9A98F0" css={override} size={100}/>
+        </div>
+        
+    )
 
     return(
         <Container fluid className="p-0 m-0">

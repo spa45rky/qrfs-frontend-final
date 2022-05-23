@@ -1,79 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Container, Table, Button, Modal, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { toast } from 'react-toastify';
-import { useSelector } from "react-redux";
-import { HashLoader } from 'react-spinners';
-import { css } from "@emotion/react";
-import { useNavigate } from "react-router-dom";
-
-export const ListDepartments = () => {
-    const [list, setList] = useState([]);
-    const [show, setShow] = useState(false);
-    const [name, setName] = useState('');
-    const [loading, setLoading] = useState(false);
-
-    const { user } = useSelector((state) => state.auth)
-
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        getDepartments()
-    }, [])
-
-    const getDepartments = async () => {
-        setLoading(true)
-        const response = await axios.get(`http://localhost:3002/admin/depts/all/${user.user.company_id}`)
-        if (response.data) {
-            console.log(response.data)
-            setLoading(false)
-            setList(response.data);
-        }
-    }
-
-    const addDepartment = async () => {
-        const deptData = {
-            title: name
-        }
-        const response = await axios.post(`http://localhost:3002/admin/deptsAdd/${user.user.company_id}`, deptData)
-        if (response.data) {
-            toast.success(response.data)
-            setShow(false)
-            getDepartments()
-        }
-    }
-
-    const handleDelete = async (id) => {
-        console.log('test')
-        const response = await axios.delete(`http://localhost:3002/admin/depts/delete/${id}`)
-        if (response.data) {
-            toast.success(response.data)
-            getDepartments()
-        }
-    }
-
-    const handleEdit = async (id) => {
-        console.log(id)
-    }
-
-    const handleShow = () => setShow(true)
-    const handleClose = () => setShow(false)
-
-    const override = css`
-    display: block;
-    margin: 0 auto;
-    `;
+import React from "react";
+import {Container, Modal, Button, Table} from 'react-bootstrap';
 
 
-
-    if (loading) return (
-        <div className='d-flex justify-content-center align-items-center loader-container'>
-            <HashLoader color="9A98F0" css={override} size={100}/>
-        </div>
-        
-    )
-
+export const Categories = async () => {
     return(
         <Container fluid className="p-0 m-0 list-departments">
             <Modal show={show} onHide={handleClose}>

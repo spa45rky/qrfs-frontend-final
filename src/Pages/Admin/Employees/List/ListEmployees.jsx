@@ -24,6 +24,10 @@ export const ListEmployees = () => {
         }
     }
 
+    const handleDelete = async () => {
+
+    }
+
     return(
         <Container fluid className="p-0 m-0 list-employees">
             <div className='top-header mt-5'>
@@ -51,7 +55,10 @@ export const ListEmployees = () => {
                                 <td>{employee.name}</td>
                                 <td>{employee.email}</td>
                                 <td>{employee.sign_type}</td>
-                                <td>N/A</td>
+                                <td>
+                                    <Button className="btn-warning action-btn m-1">Edit</Button>
+                                    <Button className="btn-danger action-btn m-1" onClick={(e) => handleDelete(employee._id)}>Delete</Button>
+                                </td>
                             </tr>
                             )}
                         </tbody>

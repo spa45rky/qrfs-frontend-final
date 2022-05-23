@@ -1,5 +1,6 @@
 import './App.css';
 import './Assets/Styles/index.scss'
+import { css } from "@emotion/react";
 import { SuperAdminDashboard } from './Pages/Superadmin/Dashboard/SuperAdminDashboard';
 import { ComplaineeDashboard } from './Pages/Complainee/Dashboard/ComplaineeDashboard';
 import { AdminDashboard } from './Pages/Admin/Dashboard/AdminDashboard';
@@ -9,6 +10,7 @@ import { ListEmployees } from './Pages/Admin/Employees/List/ListEmployees';
 import { ListDepartments } from './Pages/Admin/Departments/List/ListDepartments';
 import { CreateComplaint } from './Pages/Complainee/Complaints/Create/CreateComplaint';
 import { AddEmployee } from './Pages/Admin/Employees/Create/AddEmployee';
+import { ViewCustomer } from './Pages/Superadmin/Customers/View/ViewCustomer';
 import { Login } from './Pages/Shared/Login/Login';
 import { Signup } from './Pages/Shared/Signup/Signup';
 import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
@@ -193,6 +195,7 @@ function App() {
                           <Route path="/dashboard" element={<SuperAdminDashboard/>} />
                           <Route path="/customers" element={<ListCustomers/>} />
                           <Route path="/customers/add" element={<CreateCustomer/>} />
+                          <Route path="/customers/:id" element={<ViewCustomer/>} />
                           <Route path="*" element={<Navigate to="/dashboard" replace />} />
                       </Routes>
                     

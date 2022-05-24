@@ -18,9 +18,12 @@ import { css } from "@emotion/react";
 export const ViewDepartment = () => {
     const [data, setData] = useState([])
     const [employees, setEmployees] = useState([])
+    const [category, setCategory] = useState([])
     const [unassigned, setUnassigned] = useState([])
     const [loading, setLoading] = useState(false)
     const [show, setShow] = useState(false)
+    const [show2, setShow2] = useState(false)
+    const [currentCategories, setCurrent] = useState([])
 
     const navigate = useNavigate();
     const { user } = useSelector((state) => state.auth)
@@ -31,6 +34,7 @@ export const ViewDepartment = () => {
         getEmployees()
         getDepartment()
         getUnassigned()
+        getCategories()
     }, [])
 
     const getDepartment = async () => {
@@ -41,6 +45,9 @@ export const ViewDepartment = () => {
             setData(response.data)
         }
     }
+
+    console.log({data})
+
 
     const getUnassigned = async () => {
         const response = await axios.get(`http://localhost:3002/admin/depts/unassigned/${user.user.company_id}`)
@@ -55,6 +62,25 @@ export const ViewDepartment = () => {
         if (response.data) {
             setLoading(false)
             setEmployees(response.data)
+        }
+    }
+
+    // THIS CATEGORY CALL WILL ONLY GET UNASSIGNED CATEGORIES, IT'S DIFFERENT FROM THE OTHER CALL WITH THE SAME NAME
+    const getCategories = async () => {
+        const response = await axios.get(`http://localhost:3002/admin/categories/unassigned/${user.user.company_id}`)
+        if (response.data) {
+            console.log(response.data)
+            setCategory(response.data)
+        }
+    }
+
+    const assignCategory = async (id) => {
+        const catData = {
+            id: id
+        }
+        const response = await axios.put(`http://localhost:3002/admin/categories/dept/add/${depart_id.id}`, catData)
+        if (response.data) {
+            toast.success(response.data)
         }
     }
 
@@ -99,6 +125,7 @@ export const ViewDepartment = () => {
 
     // MODAL SHOW/HIDE FUNCTIONS
     const handleClose = () => setShow(false)
+    const handleClose2 = () => setShow2(false)
 
     return(
         <Container className="p-0 m-0 view-department">
@@ -129,6 +156,33 @@ export const ViewDepartment = () => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            <Modal show={show2} onHide={handleClose2}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Assign Category</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Table striped bordered hover>
+                        <thead>
+                            <th>Title</th>
+                        </thead>
+                        <tbody>
+                            {category.map((cat) =>
+                            <tr>
+                                <td>{cat.title}</td>
+                                <td>
+                                    <Button className="btn-success action-btn m-1" onClick={(e) => assignCategory(cat._id)}>Add</Button>
+                                </td>
+                            </tr>
+                            )}
+                        </tbody>
+                    </Table>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose2}>
                         Close
                     </Button>
                 </Modal.Footer>
@@ -182,10 +236,12 @@ export const ViewDepartment = () => {
                         text="ADD EMPLOYEE"
                         />
                         </span>
+                        <span className="pointer" onClick={() => setShow2(true)}>
                         <SmallCard
                         graphic={CategoriesImg}
                         text="ADD CATEGORY"
                         />
+                        </span>
                     </div>
                 </div>
             </div>

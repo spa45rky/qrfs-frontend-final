@@ -26,7 +26,6 @@ export const ListDepartments = () => {
         setLoading(true)
         const response = await axios.get(`http://localhost:3002/admin/depts/all/${user.user.company_id}`)
         if (response.data) {
-            console.log(response.data)
             setLoading(false)
             setList(response.data);
         }

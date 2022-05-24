@@ -162,6 +162,7 @@ function App() {
                             <Route path="/employees/add" element={<AddEmployee/>} />
                             <Route path="/departments" element={<ListDepartments/>} />
                             <Route path="/departments/:id" element={<ViewDepartment/>} />
+                            <Route path="/categories" element={<Categories/>} />
                             <Route path="*" element={<Navigate to="/dashboard" replace />} />
                         </Routes>
                       
@@ -200,7 +201,6 @@ function App() {
                           <Route path="/customers" element={<ListCustomers/>} />
                           <Route path="/customers/add" element={<CreateCustomer/>} />
                           <Route path="/customers/:id" element={<ViewCustomer/>} />
-                          <Route path="/categories" element={<Categories/>} />
                           <Route path="*" element={<Navigate to="/dashboard" replace />} />
                       </Routes>
                     

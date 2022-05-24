@@ -109,7 +109,7 @@ function App() {
                     <div className="user-info">
                         <h6 className="m-0">{user.user.name}</h6>
                         <p className="role-font">{user.user.role}</p>
-                        <div onClick={handleLogout}>logout</div>
+                        <div className="logout-btn" onClick={handleLogout}>logout</div>
                     </div>
                 </div>
             </div>

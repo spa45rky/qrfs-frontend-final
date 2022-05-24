@@ -1,27 +1,35 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Container, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { ComplaintCard } from "./ComplaintCard";
-import { useSelector } from "react-redux";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Container, Button } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { ComplaintCard } from '../../../Complainee/Complaints/List/ComplaintCard';
 
-export const ListComplaints = () => {
+export const ListAssigned = () => {
     const [list, setList] = useState([])
 
     const { user } = useSelector((state) => state.auth)
 
-    useEffect(() => {
-        getComplaints()
-    }, [])
+    // useEffect(() => {
+    //     setInterval(() => {
+    //         getSP()
+    //     }, 1000)
+    // },[])
 
-    const getComplaints = async () => {
-        const response = await axios.get(`http://localhost:3002/user/complaints/${user.user._id}`)
-        if (response.data) {
+    const getAssigned = async (id) => {
+        const response = await axios.get(`http://localhost:3002/serviceprovider/complaints/assigned/${id}`)
+        if (response.data){
             setList(response.data)
-            console.log(response.data)
         }
     }
 
+    const getSP = async () => {
+        const response = await axios.get(`http://localhost:3002/serviceprovider/get/sp/${user.user._id}`)
+        if (response.data){
+            console.log('here',response.data._id)
+            getAssigned(response.data._id)
+        }
+    }
 
     return(
         <Container className="p-0 m-0">
@@ -29,9 +37,6 @@ export const ListComplaints = () => {
                 <h1 className='name-heading'>Complaints</h1>
             </div>
             <div className="complaints-view">
-                <div className="filter-row d-flex align-items-start">
-                    <Link to="/complaints/add"><Button className="btn-add">File Complaint</Button></Link>
-                </div>
                 <div className="list-complaints">
                     {list.map((complaint) =>
                     <ComplaintCard

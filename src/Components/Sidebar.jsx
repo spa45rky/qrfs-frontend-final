@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import superadminSidebar from "./superadminSidebar";
 import complaineeSidebar from "./complaineeSidebar";
 import adminSidebar from "./adminSidebar";
+import spSidebar from "./spSidebar";
 import { useLocation } from "react-router-dom";
 
 
@@ -13,11 +14,12 @@ const Sidebar = (props) => {
 
     const role = props.role
 
-    console.log(role)
+    console.log({role})
 
     const superadmin = superadminSidebar;
     const complainee = complaineeSidebar;
     const admin = adminSidebar;
+    const sp = spSidebar;
 
     let content = []
 
@@ -30,6 +32,9 @@ const Sidebar = (props) => {
             break;
         case "ADMIN":
             content = admin
+            break;
+        case "SERVICEPROVIDER":
+            content = sp
             break;
     }
     return(

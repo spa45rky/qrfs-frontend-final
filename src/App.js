@@ -3,11 +3,13 @@ import './Assets/Styles/index.scss'
 import { css } from "@emotion/react";
 import { SuperAdminDashboard } from './Pages/Superadmin/Dashboard/SuperAdminDashboard';
 import { ComplaineeDashboard } from './Pages/Complainee/Dashboard/ComplaineeDashboard';
+import { SpDashboard } from './Pages/Service Provider/Dashboard/SpDashboard';
 import { AdminDashboard } from './Pages/Admin/Dashboard/AdminDashboard';
 import { ListCustomers } from './Pages/Superadmin/Customers/List/ListCustomers';
 import { ListComplaints } from './Pages/Complainee/Complaints/List/ListComplaints';
 import { ListEmployees } from './Pages/Admin/Employees/List/ListEmployees';
 import { ListDepartments } from './Pages/Admin/Departments/List/ListDepartments';
+import { ListAssigned } from './Pages/Service Provider/Complaints/List/ListAssigned';
 import { CreateComplaint } from './Pages/Complainee/Complaints/Create/CreateComplaint';
 import { AddEmployee } from './Pages/Admin/Employees/Create/AddEmployee';
 import { ViewCustomer } from './Pages/Superadmin/Customers/View/ViewCustomer';
@@ -69,6 +71,10 @@ function App() {
           break;
         case "COMPLAINEE":
           setAccess('COMPLAINEE')
+          break;
+        case "SERVICEPROVIDER":
+          setAccess("SERVICEPROVIDER")
+          break;
       }
     }
   }, [user])
@@ -88,6 +94,45 @@ function App() {
     <div className="App">
       <ToastContainer/>
       {user ?
+      access === "SERVICEPROVIDER" ?
+
+      <BrowserRouter>
+      <Container fluid className="dashboardContainer d-flex p-0 m-0">
+            <div className="left-sidebar col-2">
+                <div className="top-logo">
+                    <img src={WhiteLogo} className='dashboard-logo mt-4' />
+                </div>
+                <div className="middle-sidebar">
+                  <Sidebar role={access}/>
+                </div>
+                <hr className="hr"/>
+                <div className="bottom-user d-flex"> 
+                    <div className="pfp-circle">
+                        <img src={DefaultPfp} className="pfp-img" />
+                    </div>
+                    <div className="user-info">
+                        <h6 className="m-0">{user.user.name}</h6>
+                        <p className="role-font">{user.user.role}</p>
+                        <div className="logout-btn" onClick={handleLogout}>logout</div>
+                    </div>
+                </div>
+            </div>
+            <div className="right-content col-10">
+                <div className="right-menu">
+                  {
+                      <Routes>
+                          <Route path="/dashboard" element={<SpDashboard/>} />
+                          <Route path="/complaints" element={<ListAssigned/>} />
+                          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                      </Routes>
+                    
+                  }
+                </div>
+            </div>
+        </Container>
+        </BrowserRouter>
+
+        :
       access === "COMPLAINEE" ?
 
       // WILL ONLY RENDER COMPLAINEE DASHBOARD BASED ON USER ROLE

@@ -13,7 +13,7 @@ import { ToastContainer } from 'react-bootstrap';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
         <Provider store={store}>
-            <ToastContainer/>
+            {/* <ToastContainer/> */}
             <App/>
         </Provider>
 );

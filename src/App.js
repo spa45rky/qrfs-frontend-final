@@ -58,6 +58,12 @@ function App() {
     (state) => state.auth
   );
 
+  const ProtectedRoute = ({ user, children }) => {
+    if (!user) {
+      return <Navigate to="/" replace />;
+    }
+  }
+
   useEffect(() => {
     if (user) {
       switch (user.user.role) {
@@ -93,7 +99,21 @@ function App() {
   return (
     <div className="App">
       <ToastContainer/>
-      {user ?
+
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login/>}/>
+          <Route path="/register" element = {<Signup/>} />
+          {/* <Route path="/superadmin/dashboard" element= {
+            <ProtectedRoute user={user}>
+              <SuperAdminDashboard/>
+            </ProtectedRoute>
+          }/> */}
+          <Route path="/dashboard" element = {<SuperAdminDashboard/>}/>
+        </Routes>
+      </BrowserRouter>
+
+      {/* {user ?
       access === "SERVICEPROVIDER" ?
 
       <BrowserRouter>
@@ -134,8 +154,6 @@ function App() {
 
         :
       access === "COMPLAINEE" ?
-
-      // WILL ONLY RENDER COMPLAINEE DASHBOARD BASED ON USER ROLE
 
       <BrowserRouter>
       <Container fluid className="dashboardContainer d-flex p-0 m-0">
@@ -193,7 +211,6 @@ function App() {
                       <div className="user-info">
                           <h6 className="m-0">{user.user.name}</h6>
                           <p className="role-font">{user.user.role}</p>
-                          {/* <Button className="btn btn-primary" onClick={handleLogout}>logout</Button> */}
                           <div className="logout-btn" onClick={handleLogout}>logout</div>
                       </div>
                   </div>
@@ -262,7 +279,7 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
       </BrowserRouter>
-      }
+      } */}
     </div>
   );
 }
